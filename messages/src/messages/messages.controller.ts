@@ -12,11 +12,7 @@ import { MessagesService } from './messages.servive';
 
 @Controller('messages')
 export class MessagesController {
-  messagesService: MessagesService;
-
-  constructor() {
-    this.messagesService = new MessagesService();
-  }
+  constructor(public messagesService: MessagesService) {}
 
   @Get()
   listMessages() {
@@ -33,5 +29,7 @@ export class MessagesController {
     const message = await this.messagesService.findOne(id);
 
     if (!message) throw new NotFoundException('Message not');
+
+    return message;
   }
 }
